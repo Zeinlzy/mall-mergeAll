@@ -1,0 +1,25 @@
+redis:
+  host: localhost
+  port: 6379
+    # 如果有密码
+    # password: yourpassword
+    # 如果有数据库索引
+    # database: 0
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs  # OpenAPI JSON 路径
+  swagger-ui:
+    path: /swagger-ui.html  # Swagger UI 访问路径
+    tags-sorter: alpha      # 标签按字母排序
+
+swagger:
+  enableSecurity: true
+  title: LZY商城 API文档
+  description: 这是LZY商城项目的API接口文档
+  version: v1.0.0
+  contactName: LZY
+  contactUrl: https://www.example.com
+  contactEmail: lzy@example.com
+  apiBasePackage: com.lzy.mall.controller # 指定你的Controller所在的包
