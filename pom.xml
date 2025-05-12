@@ -9,15 +9,15 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-<!--    <modules>-->
-<!--        <module>mall-common</module>-->
+    <modules>
+        <module>mall-common</module>
 <!--        <module>mall-mbg</module>-->
-<!--        <module>mall-security</module>-->
+        <module>mall-security</module>
 <!--        <module>mall-demo</module>-->
 <!--        <module>mall-admin</module>-->
 <!--        <module>mall-search</module>-->
 <!--        <module>mall-portal</module>-->
-<!--    </modules>-->
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
