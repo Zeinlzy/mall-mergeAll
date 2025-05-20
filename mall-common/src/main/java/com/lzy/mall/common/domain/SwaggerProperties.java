@@ -3,11 +3,14 @@ package com.lzy.mall.common.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.boot.context.properties.ConfigurationProperties; // 导入这个注解
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * Swagger自定义配置属性类。
  * 这个类用于封装从Spring Boot配置文件 (如 application.yml 或 application.properties) 中加载的与Swagger (OpenAPI) 文档生成相关的配置项。
  */
+@Configuration
 @Data // Lombok: 自动生成getter, setter, toString, equals, hashCode等方法
 @EqualsAndHashCode // Lombok: 自动生成equals和hashCode方法 (被@Data包含，可省略)
 @ConfigurationProperties(prefix = "swagger") // Spring Boot注解: 标记此类为配置属性类，
@@ -26,7 +29,7 @@ public class SwaggerProperties {
      * 默认为false。
      * 示例配置: swagger.enable-security=true
      */
-    private boolean enableSecurity = false; // 默认不启用安全特性
+    private boolean enableSecurity = true; // 默认不启用安全特性
 
     /**
      * API文档的标题。

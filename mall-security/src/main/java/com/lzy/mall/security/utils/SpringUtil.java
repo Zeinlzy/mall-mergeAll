@@ -85,7 +85,7 @@ public class SpringUtil implements ApplicationContextAware {
      *         (如 {@link org.springframework.beans.factory.NoSuchBeanDefinitionException} 或 {@link org.springframework.beans.factory.NoUniqueBeanDefinitionException})。
      */
     public static <T> T getBean(Class<T> clazz) {
-        // (3) 调用 getApplicationContext() 获取 Spring 应用上下文，然后通过上下文的 getBean(clazz) 方法获取 Bean。
+        //调用 getApplicationContext() 获取 Spring 应用上下文，然后通过上下文的 getBean(clazz) 方法获取 Bean。
         return getApplicationContext().getBean(clazz);
     }
 
@@ -101,7 +101,7 @@ public class SpringUtil implements ApplicationContextAware {
      *         如果找不到指定名称和类型的 Bean，会抛出 {@link org.springframework.beans.factory.NoSuchBeanDefinitionException}。
      */
     public static <T> T getBean(String name, Class<T> clazz) {
-        // (3) 调用 getApplicationContext() 获取 Spring 应用上下文，然后通过上下文的 getBean(name, clazz) 方法获取 Bean。
+        //调用 getApplicationContext() 获取 Spring 应用上下文，然后通过上下文的 getBean(name, clazz) 方法获取 Bean。
         return getApplicationContext().getBean(name, clazz);
     }
 

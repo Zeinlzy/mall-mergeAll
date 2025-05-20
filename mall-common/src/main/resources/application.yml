@@ -1,19 +1,22 @@
+# Redis 部分保持不变
 redis:
   host: localhost
   port: 6379
-    # 如果有密码
-    # password: yourpassword
-    # 如果有数据库索引
-    # database: 0
+  # password、database 如有需要可解注
 
+# SpringDoc/OpenAPI 配置
 springdoc:
   api-docs:
     enabled: true
-    path: /v3/api-docs  # OpenAPI JSON 路径
+    path: /v3/api-docs       # OpenAPI JSON 暴露路径（默认即可）
   swagger-ui:
-    path: /swagger-ui.html  # Swagger UI 访问路径
-    tags-sorter: alpha      # 标签按字母排序
+    disable-swagger-default-url: true   # 禁用默认的 Petstore URL
+    path: /swagger-ui.html   # 访问路径（若想访问 /swagger-ui/index.html，可改为 index.html）
+    url: /v3/api-docs        # 指定默认加载的 OpenAPI JSON 地址，使 UI 不再加载 Petstore 示例
+    operations-sorter: alpha  # 接口列表按字母排序
+    tags-sorter: alpha        # 标签按字母排序
 
+# 你自定义的 SwaggerProperties
 swagger:
   enableSecurity: true
   title: LZY商城 API文档
@@ -22,4 +25,4 @@ swagger:
   contactName: LZY
   contactUrl: https://www.example.com
   contactEmail: lzy@example.com
-  apiBasePackage: com.lzy.mall.controller # 指定你的Controller所在的包
+  apiBasePackage: com.lzy.mall.controller

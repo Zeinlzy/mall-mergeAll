@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import jakarta.servlet.FilterChain;
@@ -22,6 +23,7 @@ import java.io.IOException;
  * JWT认证过滤器，用于在每个请求到达时检查JWT令牌的有效性，并根据令牌信息设置Spring Security的认证上下文。
  * 它继承自OncePerRequestFilter，确保每个请求只经过一次该过滤器。
  */
+@Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
 

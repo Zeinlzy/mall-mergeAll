@@ -13,6 +13,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.slf4j.Logger; // 添加导入
+import org.slf4j.LoggerFactory; // 添加导入
+
 /**
  * SpringDocConfig 是一个 Spring Boot 配置类，用于自定义 SpringDoc (OpenAPI 3) 的行为，从而生成和定制化 API 文档
  * 这个类使得开发者可以通过外部配置文件轻松定制化其项目的 API 文档，而不需要硬编码这些信息
@@ -21,7 +24,9 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(SwaggerProperties.class) // 启用SwaggerProperties类，使其能够从application.yml或.properties文件中加载配置
 public class SpringDocConfig {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpringDocConfig.class); // 添加 Logger
     private final SwaggerProperties swaggerProperties; // 用于存储从配置文件加载的Swagger属性
+
 
     /**
      * 构造函数，通过依赖注入获取SwaggerProperties的实例。
@@ -30,6 +35,17 @@ public class SpringDocConfig {
     @Autowired // Spring会自动注入SwaggerProperties的Bean
     public SpringDocConfig(SwaggerProperties swaggerProperties) {
         this.swaggerProperties = swaggerProperties;
+
+        // 添加日志输出，检查属性值
+        LOGGER.info("SwaggerProperties loaded:");
+        LOGGER.info("  Enable Security: {}", swaggerProperties.isEnableSecurity());
+        LOGGER.info("  Title: {}", swaggerProperties.getTitle());
+        LOGGER.info("  Description: {}", swaggerProperties.getDescription());
+        LOGGER.info("  Version: {}", swaggerProperties.getVersion());
+        LOGGER.info("  Contact Name: {}", swaggerProperties.getContactName());
+        LOGGER.info("  Contact Url: {}", swaggerProperties.getContactUrl());
+        LOGGER.info("  Contact Email: {}", swaggerProperties.getContactEmail());
+        LOGGER.info("  API Base Package: {}", swaggerProperties.getApiBasePackage());
     }
 
     /**
@@ -78,8 +94,10 @@ public class SpringDocConfig {
      */
     private SecurityScheme securityScheme() {
         return new SecurityScheme()
-                .type(SecurityScheme.Type.APIKEY) // 安全方案类型：API Key
-                .name("Authorization"); // API Key的名称，指定密钥将通过名为 "Authorization" 的请求头传递
+                .type(SecurityScheme.Type.HTTP) // 修改为HTTP类型
+                .scheme("bearer") // 认证方案为bearer
+                .bearerFormat("JWT") // (可选) 指定 bearer 格式为 JWT，给前端提示
+                .description("请输入认证 token，格式为 'Bearer token'"); // 给用户提示如何输入token
         // 也可以更明确地指定 .in(SecurityScheme.In.HEADER)
     }
 
@@ -94,8 +112,7 @@ public class SpringDocConfig {
         String basePackage = swaggerProperties.getApiBasePackage();
 
         // 开始构建API分组，默认组名为 "default"
-        GroupedOpenApi.Builder builder = GroupedOpenApi.builder()
-                .group("default"); // 定义组名
+        GroupedOpenApi.Builder builder = GroupedOpenApi.builder().group("default"); // 定义组名
 
         // 如果配置文件中指定了基础包路径
         if (basePackage != null && !basePackage.isEmpty()) {
@@ -105,7 +122,11 @@ public class SpringDocConfig {
             // 实际项目中建议使用日志框架 (如SLF4J + Logback) 输出警告。
             // LOGGER.warn("Warning: 'swagger.apiBasePackage' is not set. SpringDoc will use its default package scanning.");
             System.out.println("Warning: 'swagger.apiBasePackage' is not set. SpringDoc will use its default package scanning.");
+            builder.packagesToScan("com.lzy.mall.controller");
         }
+
+        // 另外，最好补个 pathsToMatch，兜底匹配所有路径
+        builder.pathsToMatch("/**");
 
         return builder.build(); // 构建并返回GroupedOpenApi对象
     }

@@ -40,12 +40,18 @@ public class SecurityConfig {
     // 注入处理JWT认证令牌的过滤器 Bean
     @Autowired
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+
+//    @Autowired
+//    private UmsAdminService umsAdminService;
+
     // 注入动态权限服务 Bean (可选，因为使用了required = false)
     @Autowired(required = false)
     private DynamicSecurityService dynamicSecurityService;
     // 注入动态权限过滤器 Bean (可选，因为使用了required = false)
     @Autowired(required = false)
     private DynamicSecurityFilter dynamicSecurityFilter;
+
+
 
     /**
      * 配置安全过滤器链
@@ -74,6 +80,10 @@ public class SecurityConfig {
 
                 //配置URL访问权限规则
                 .authorizeHttpRequests(authorizeRequests -> {
+
+                    // 放行 Swagger UI 静态资源与 JSON
+                    authorizeRequests.requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll();
+
                     //配置忽略安全控制的URL路径：遍历ignoreUrlsConfig中定义的URL列表
                     for (String url : ignoreUrlsConfig.getUrls()) {
                         //对于列表中的每个URL，允许所有请求（permitAll）访问
