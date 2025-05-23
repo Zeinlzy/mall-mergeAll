@@ -27,7 +27,7 @@ controller 包下都有什么类型的类？
 
 UmsMemberLevelController: 学习会员等级相关的管理接口。  //
 
-UmsMenuController: 学习后台菜单的管理接口，这通常与权限系统相关。
+UmsMenuController: 学习后台菜单的管理接口，这通常与权限系统相关。//
 
 UmsResourceCategoryController: 学习资源分类的管理接口，资源（如接口、页面元素）是权限控制的基本单位。
 
