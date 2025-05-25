@@ -29,11 +29,11 @@ UmsMemberLevelController: 学习会员等级相关的管理接口。  //
 
 UmsMenuController: 学习后台菜单的管理接口，这通常与权限系统相关。//
 
-UmsResourceCategoryController: 学习资源分类的管理接口，资源（如接口、页面元素）是权限控制的基本单位。
+UmsResourceCategoryController: 学习资源分类的管理接口，资源（如接口、页面元素）是权限控制的基本单位。//
 
 UmsResourceController: 学习具体的资源管理接口，定义哪些资源需要权限控制。
 
-UmsRoleController: 学习角色管理接口，包括角色的创建、分配权限（关联资源和菜单）等，这与 UmsAdminController 中用户的角色分配紧密相关。
+UmsRoleController: 学习角色管理接口，包括角色的创建、分配权限（关联资源和菜单）等，这与 UmsAdminController 中用户的角色分配紧密相关。//
 
 完成 Ums 模块的学习后，你将对用户、角色、菜单、资源和权限系统有一个完整的认识。
 
