@@ -2,17 +2,17 @@
 
 ### 1. 核心功能（高优先级）已学习
 
-- **UmsAdminController**：管理员账号管理
-- **UmsRoleController**：角色管理
-- **UmsMenuController**：菜单管理
-- **UmsResourceController**：资源管理
-- **UmsResourceCategoryController**：资源分类
+- **UmsAdminController**：管理员账号管理/
+- **UmsRoleController**：角色管理/
+- **UmsMenuController**：菜单管理/
+- **UmsResourceController**：资源管理/
+- **UmsResourceCategoryController**：资源分类/
 
 ### 2. 商品管理（中高优先级）
 
-- **PmsProductController**：商品管理
-- **PmsProductCategoryController**：商品分类
-- **PmsBrandController**：品牌管理
+- **PmsProductController**：商品管理/
+- **PmsProductCategoryController**：商品分类/
+- **PmsBrandController**：品牌管理/
 - **PmsProductAttributeController**：商品属性
 
 ### 3. 订单管理（中优先级）
