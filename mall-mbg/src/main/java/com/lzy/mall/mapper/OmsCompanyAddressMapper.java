@@ -2,7 +2,6 @@ package com.lzy.mall.mapper;
 
 import com.lzy.mall.model.OmsCompanyAddress;
 import com.lzy.mall.model.OmsCompanyAddressExample;
-import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
